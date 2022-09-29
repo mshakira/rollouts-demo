@@ -24,6 +24,13 @@ class Particle {
             "darkblue": "purplesick.png",
             "darkyellow": "yellowsick.png",
         }
+        this.colorMap = {
+            background: { w: 70, h: 70},
+            yellow: { w: 122, h: 70},
+            blue: { w: 70, h: 70},
+            darkblue: { w: 70, h: 70},
+            darkyellow: { w: 122, h: 70},
+        }
     }
 
     tick(duration) {
@@ -35,7 +42,7 @@ class Particle {
         // const img = document.createElement("img");
         const img = imageCache.getImages().find(i => i.name === this.color);
         // img.src = this.colorMap[this.color]
-        context.drawImage(img.img, this.x, this.y, 70, 70);
+        context.drawImage(img.img, this.x, this.y, this.colorMap[this.color].w,  this.colorMap[this.color].h);
         if (this.statusCode == 500) {
             // context.lineWidth = 5;
             // context.strokeStyle = "black";
