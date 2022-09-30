@@ -19,17 +19,19 @@ class Particle {
 
         this.vy = 0;
         this.colorMap = {
-            "yellow": "yellow.png",
-            "blue": "purple.png",
-            "darkblue": "purplesick.png",
-            "darkyellow": "yellowsick.png",
-        }
-        this.colorMap = {
             background: { w: 70, h: 70},
-            yellow: { w: 122, h: 70},
-            blue: { w: 70, h: 70},
-            darkblue: { w: 70, h: 70},
-            darkyellow: { w: 122, h: 70},
+            yellow0: { w: 122, h: 70},
+            blue0: { w: 73, h: 70},
+            darkblue0: { w: 73, h: 70},
+            darkyellow0: { w: 122, h: 70},
+            yellow1: { w: 105, h: 61},
+            yellow2:{ w: 122, h: 70},
+            blue1: { w: 62, h: 60},
+            blue2: { w: 52, h: 50},
+            darkblue1: { w: 62, h: 60},
+            darkblue2:{ w: 52, h: 50},
+            darkyellow1: { w: 105, h: 61},
+            darkyellow2: { w: 122, h: 70},
         }
     }
 
@@ -40,13 +42,16 @@ class Particle {
 
     draw(context, imageCache) {
         // const img = document.createElement("img");
-        const img = imageCache.getImages().find(i => i.name === this.color);
+        const id = `${this.color}`
+        const img = imageCache.getImages().find(i => i.name === id);
         // img.src = this.colorMap[this.color]
-        context.drawImage(img.img, this.x, this.y, this.colorMap[this.color].w,  this.colorMap[this.color].h);
-        if (this.statusCode == 500) {
-            // context.lineWidth = 5;
-            // context.strokeStyle = "black";
-            // context.stroke();
+        if(img) {
+            context.drawImage(img.img, this.x, this.y, this.colorMap[id].w, this.colorMap[id].h);
+            if (this.statusCode == 500) {
+                // context.lineWidth = 5;
+                // context.strokeStyle = "black";
+                // context.stroke();
+            }
         }
     }
 }
@@ -61,7 +66,7 @@ class Chart {
         this.height = 180
         this.width = 17;
         this.colorMap = {
-            "blue": "#7719D6",
+            "blue": "#FEB202", //"#7719D6",
             "darkyellow" : "#FF0000",
             "yellow" : "#FEB202",
             "darkblue" : "#FF0000",
@@ -191,10 +196,11 @@ export class App {
         .then(function(res) {
            return res.json().then(color => ({ color, res }))
         }).then((function(res) {
+            res.colorImg = `${res.color}${Math.floor(Math.random() * 4)}`
             var receiveTime = (new Date()).getTime();
             var responseTimeMs = receiveTime - sendTime;
             let startingY = (this.canvas.height - this.chart.height - ParticleMaxSize - ArgoImageSize) * Math.random() + ArgoImageSize
-            this.particles.unshift(new Particle(this.canvas.width, startingY, res.color, res.res.status, responseTimeMs));
+            this.particles.unshift(new Particle(this.canvas.width, startingY, res.colorImg, res.res.status, responseTimeMs));
             this.particles = this.particles.slice(0, 200);
             this.chart.addColor(res.color, res.res.status);
             this.sliders.addColor(res.color)
@@ -261,7 +267,7 @@ export class Color {
         reload();
 
         this.colorMap = {
-            "blue": "#7719D6",
+            "blue": "#FEB202", //"#7719D6",
             "darkyellow" : "#FF0000",
             "yellow" : "#FEB202",
             "darkblue" : "#FF0000",
