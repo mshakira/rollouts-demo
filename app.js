@@ -25,13 +25,13 @@ class Particle {
             darkblue0: { w: 73, h: 70},
             darkyellow0: { w: 122, h: 70},
             yellow1: { w: 105, h: 61},
-            yellow2:{ w: 122, h: 70},
+            yellow2:{ w: 91, h: 56},
             blue1: { w: 62, h: 60},
             blue2: { w: 52, h: 50},
             darkblue1: { w: 62, h: 60},
             darkblue2:{ w: 52, h: 50},
             darkyellow1: { w: 105, h: 61},
-            darkyellow2: { w: 122, h: 70},
+            darkyellow2: { w: 91, h: 56},
         }
     }
 

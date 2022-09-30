@@ -16,10 +16,11 @@
         <input type="text" value="0" id="delayPercent">
     </div>
 </div>
-<div class="versionbox">
-    <div class="select-colors" id="availableColors"></div>
-</div>
-<div class="textbox">
+<div class="floatbox">
+    <div class="versionbox">
+        <div class="select-colors" id="availableColors"></div>
+    </div>
+    <div class="textbox">
     <div class="slider-group">
         <label>500 Error Rate</label>
         <output class="output-style" name="output500" id="output500">0%</output>
@@ -40,6 +41,7 @@
             <label>20s</label>
         </div>
     </div>
+</div>
 </div>
 </body>
 <script type="module">
@@ -70,7 +72,7 @@
     darkblue2: "./purplesick3.png",
     darkyellow0: "./yellowsick.png",
     darkyellow1: "./yellowsick1.png",
-    darkyellow2: "./yellowsick2.png",
+    darkyellow2: "./yellowsick3.png",
   }
   imageCache.loadImages(dict);
   imageCache.imagesOnload(() => {
